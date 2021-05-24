@@ -46,7 +46,7 @@ namespace Rema1000.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKategori(int id, Kategori kategori)
         {
-            if (id != kategori.KategoriId)
+            if (id != kategori.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace Rema1000.Controllers
             _context.Kategori.Add(kategori);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetKategori", new { id = kategori.KategoriId }, kategori);
+            return CreatedAtAction("GetKategori", new { id = kategori.Id }, kategori);
         }
 
         // DELETE: api/Kategoris/5
@@ -101,7 +101,7 @@ namespace Rema1000.Controllers
 
         private bool KategoriExists(int id)
         {
-            return _context.Kategori.Any(e => e.KategoriId == id);
+            return _context.Kategori.Any(e => e.Id == id);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Rema1000
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RemaContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseSqlServer(Configuration.GetConnectionString("RemaContext")));
             //services.AddDbContext<RemaContext>(opt => opt.UseInMemoryDatabase("Rema1000"));
             services.AddControllers();
             services.AddSwaggerGen(c =>

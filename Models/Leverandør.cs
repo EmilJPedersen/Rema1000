@@ -8,7 +8,7 @@ namespace Rema1000.Models
 {
     public class Leverandør
     {
-        public int LeverandørId { get; set; } //PrimaryKey
+        public int Id { get; set; } //PrimaryKey
         public String Navn { get; set; }
         public String Adresse { get; set; }
         public String Postnr { get; set; }

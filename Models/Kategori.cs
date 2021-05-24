@@ -9,7 +9,7 @@ namespace Rema1000.Models
 {
     public class Kategori
     {
-        public int KategoriId { get; set; } //PrimaryKey
+        public int Id { get; set; } //PrimaryKey
         public string Navn { get; set; }
         public string Beskrivelse { get; set; }
     }

@@ -46,7 +46,7 @@ namespace Rema1000.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLeverandør(int id, Leverandør leverandør)
         {
-            if (id != leverandør.LeverandørId)
+            if (id != leverandør.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace Rema1000.Controllers
             _context.Leverandør.Add(leverandør);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLeverandør", new { id = leverandør.LeverandørId }, leverandør);
+            return CreatedAtAction("GetLeverandør", new { id = leverandør.Id }, leverandør);
         }
 
         // DELETE: api/Leverandør/5
@@ -101,7 +101,7 @@ namespace Rema1000.Controllers
 
         private bool LeverandørExists(int id)
         {
-            return _context.Leverandør.Any(e => e.LeverandørId == id);
+            return _context.Leverandør.Any(e => e.Id == id);
         }
     }
 }

@@ -10,21 +10,21 @@ namespace Rema1000.Migrations
                 name: "Kategori",
                 columns: table => new
                 {
-                    KategoriId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Navn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Beskrivelse = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kategori", x => x.KategoriId);
+                    table.PrimaryKey("PK_Kategori", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Leverandør",
                 columns: table => new
                 {
-                    LeverandørId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Navn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -35,50 +35,50 @@ namespace Rema1000.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Leverandør", x => x.LeverandørId);
+                    table.PrimaryKey("PK_Leverandør", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Produkt",
                 columns: table => new
                 {
-                    ProduktId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Navn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Beskrivelse = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Enhed = table.Column<float>(type: "real", nullable: false),
                     Mængde = table.Column<int>(type: "int", nullable: false),
                     Pris = table.Column<float>(type: "real", nullable: false),
-                    KategoriId1 = table.Column<int>(type: "int", nullable: true),
+                    KategoriId = table.Column<int>(type: "int", nullable: false),
                     Lager = table.Column<int>(type: "int", nullable: false),
-                    LeverandørId1 = table.Column<int>(type: "int", nullable: true)
+                    LeverandørId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produkt", x => x.ProduktId);
+                    table.PrimaryKey("PK_Produkt", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Produkt_Kategori_KategoriId1",
-                        column: x => x.KategoriId1,
+                        name: "FK_Produkt_Kategori_KategoriId",
+                        column: x => x.KategoriId,
                         principalTable: "Kategori",
-                        principalColumn: "KategoriId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Produkt_Leverandør_LeverandørId1",
-                        column: x => x.LeverandørId1,
+                        name: "FK_Produkt_Leverandør_LeverandørId",
+                        column: x => x.LeverandørId,
                         principalTable: "Leverandør",
-                        principalColumn: "LeverandørId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produkt_KategoriId1",
+                name: "IX_Produkt_KategoriId",
                 table: "Produkt",
-                column: "KategoriId1");
+                column: "KategoriId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produkt_LeverandørId1",
+                name: "IX_Produkt_LeverandørId",
                 table: "Produkt",
-                column: "LeverandørId1");
+                column: "LeverandørId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -46,7 +46,7 @@ namespace Rema1000.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProdukt(int id, Produkt produkt)
         {
-            if (id != produkt.ProduktId)
+            if (id != produkt.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace Rema1000.Controllers
             _context.Produkt.Add(produkt);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProdukt", new { id = produkt.ProduktId }, produkt);
+            return CreatedAtAction("GetProdukt", new { id = produkt.Id }, produkt);
         }
 
         // DELETE: api/Produkts/5
@@ -101,7 +101,7 @@ namespace Rema1000.Controllers
 
         private bool ProduktExists(int id)
         {
-            return _context.Produkt.Any(e => e.ProduktId == id);
+            return _context.Produkt.Any(e => e.Id == id);
         }
     }
 }
