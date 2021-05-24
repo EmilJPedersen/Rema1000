@@ -10,7 +10,7 @@ using Rema1000.Models;
 namespace Rema1000.Migrations
 {
     [DbContext(typeof(RemaContext))]
-    [Migration("20210523221450_initialsetup")]
+    [Migration("20210524091728_initialsetup")]
     partial class initialsetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

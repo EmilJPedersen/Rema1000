@@ -28,10 +28,9 @@ namespace Rema1000
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<RemaContext>(options =>
-            //        //options.UseSqlServer(Configuration.GetConnectionString("RemaContext")));
-            //        options.UseSqlServer(@"Data Source = DESKTOP - LAQM6HV\MSSQLSERVER01; Initial Catalog = DESKTOP - LAQM6HV\Emil; Integrated Security = True"));
-            services.AddDbContext<RemaContext>(opt => opt.UseInMemoryDatabase("Rema1000"));
+            services.AddDbContext<RemaContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<RemaContext>(opt => opt.UseInMemoryDatabase("Rema1000"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
