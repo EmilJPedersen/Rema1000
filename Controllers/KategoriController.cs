@@ -11,47 +11,47 @@ namespace Rema1000.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProduktsController : ControllerBase
+    public class KategoriController : ControllerBase
     {
         private readonly RemaContext _context;
 
-        public ProduktsController(RemaContext context)
+        public KategoriController(RemaContext context)
         {
             _context = context;
         }
 
-        // GET: api/Produkts
+        // GET: api/Kategori
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produkt>>> GetProdukt()
+        public async Task<ActionResult<IEnumerable<Kategori>>> GetKategori()
         {
-            return await _context.Produkt.ToListAsync();
+            return await _context.Kategori.ToListAsync();
         }
 
-        // GET: api/Produkts/5
+        // GET: api/Kategori/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Produkt>> GetProdukt(int id)
+        public async Task<ActionResult<Kategori>> GetKategori(int id)
         {
-            var produkt = await _context.Produkt.FindAsync(id);
+            var kategori = await _context.Kategori.FindAsync(id);
 
-            if (produkt == null)
+            if (kategori == null)
             {
                 return NotFound();
             }
 
-            return produkt;
+            return kategori;
         }
 
-        // PUT: api/Produkts/5
+        // PUT: api/Kategori/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProdukt(int id, Produkt produkt)
+        public async Task<IActionResult> PutKategori(int id, Kategori kategori)
         {
-            if (id != produkt.Id)
+            if (id != kategori.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(produkt).State = EntityState.Modified;
+            _context.Entry(kategori).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Rema1000.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProduktExists(id))
+                if (!KategoriExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace Rema1000.Controllers
             return NoContent();
         }
 
-        // POST: api/Produkts
+        // POST: api/Kategori
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Produkt>> PostProdukt(Produkt produkt)
+        public async Task<ActionResult<Kategori>> PostKategori(Kategori kategori)
         {
-            _context.Produkt.Add(produkt);
+            _context.Kategori.Add(kategori);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProdukt", new { id = produkt.Id }, produkt);
+            return CreatedAtAction("GetKategori", new { id = kategori.Id }, kategori);
         }
 
-        // DELETE: api/Produkts/5
+        // DELETE: api/Kategori/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProdukt(int id)
+        public async Task<IActionResult> DeleteKategori(int id)
         {
-            var produkt = await _context.Produkt.FindAsync(id);
-            if (produkt == null)
+            var kategori = await _context.Kategori.FindAsync(id);
+            if (kategori == null)
             {
                 return NotFound();
             }
 
-            _context.Produkt.Remove(produkt);
+            _context.Kategori.Remove(kategori);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ProduktExists(int id)
+        private bool KategoriExists(int id)
         {
-            return _context.Produkt.Any(e => e.Id == id);
+            return _context.Kategori.Any(e => e.Id == id);
         }
     }
 }
